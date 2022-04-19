@@ -9,9 +9,9 @@ on:
   schedule:
     - cron: '43 4 * * *'
   push:
-    branches: [ gcc-mingw-w64-i686 ]
+    branches: [ i686-pc-windows-gnu ]
   pull_request:
-    branches: [ gcc-mingw-w64-i686 ]
+    branches: [ i686-pc-windows-gnu ]
 
 env:
   # Use docker.io for Docker Hub if empty
