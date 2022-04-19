@@ -9,7 +9,7 @@ main() {
     # that are compatible with rust.
 
     # Enable source
-    sed -i 's/^deb \(.*\)/deb \1\ndeb-src \1/' /etc/apt/sources.list
+    #sed -i 's/^deb \(.*\)/deb \1\ndeb-src \1/' /etc/apt/sources.list
     #sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
     apt-get update
 
@@ -34,8 +34,9 @@ main() {
 
     pushd "${td}"
 
-    apt-get source gcc-mingw-w64-i686
-    pushd gcc-mingw-w64-*
+    #apt-get source gcc-mingw-w64-i686
+    git clone "https://salsa.debian.org/mingw-w64-team/gcc-mingw-w64.git" --branch "buster" --single-branch 
+    pushd gcc-mingw-w64
 
     # We are using dwarf exceptions instead of sjlj
     sed -i -e 's/libgcc_s_sjlj-1/libgcc_s_dw2-1/g' debian/gcc-mingw-w64-i686.install
@@ -108,7 +109,7 @@ EOF
 +CONFFLAGS += \
 +	--disable-sjlj-exceptions \
 +	--with-dwarf2
- # Enable experimental::filesystem
+ # Enable experimental::filesystem and std::filesystem
  CONFFLAGS += \
  	--enable-libstdcxx-filesystem-ts=yes
 EOF
