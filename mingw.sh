@@ -39,7 +39,7 @@ main() {
     pushd gcc-mingw-w64
 
     # We are using dwarf exceptions instead of sjlj
-    sed -i -e 's/libgcc_s_sjlj-1/libgcc_s_dw2-1/g' debian/gcc-mingw-w64-i686.install
+    sed -i -e 's/libgcc_s_sjlj-1/libgcc_s_dw2-1/g' debian/gcc-mingw-w64-i686.install.in
 
     # Only build i686 packages (disable x86_64)
     patch -p0 <<'EOF'
