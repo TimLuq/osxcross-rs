@@ -17,18 +17,6 @@ main() {
     # Later we replace these packages with the new ones
     apt-get install --assume-yes --no-install-recommends g++-mingw-w64-i686
 
-    local dependencies=(build-essential)
-    while IFS='' read -r dep; do dependencies+=("${dep}"); done < \
-      <(apt-cache showsrc gcc-mingw-w64-i686 | grep Build | cut -d: -f2 | tr , '\n' | cut -d' ' -f2 | sort | uniq)
-
-    local purge_list=()
-    for dep in "${dependencies[@]}"; do
-        if ! dpkg -L "${dep}" > /dev/null; then
-            apt-get install --assume-yes --no-install-recommends "${dep}"
-            purge_list+=( "${dep}" )
-        fi
-    done
-
     local td
     td="$(mktemp -d)"
 
@@ -37,6 +25,20 @@ main() {
     #apt-get source gcc-mingw-w64-i686
     git clone "https://salsa.debian.org/mingw-w64-team/gcc-mingw-w64.git" --branch "buster" --single-branch 
     pushd gcc-mingw-w64
+
+    
+    # load deps
+    local dependencies=(build-essential)
+    while IFS='' read -r dep; do dependencies+=("${dep}"); done < \
+      <(head -n 28 debian/control | grep -P '(Build-Depends: |               )' | sed 's/^[^ ]* \{1,\}\([^ ,]*\).*$/\1/' | sort | uniq)
+
+    local purge_list=()
+    for dep in "${dependencies[@]}"; do
+        if ! dpkg -L "${dep}" > /dev/null; then
+            apt-get install --assume-yes --no-install-recommends "${dep}"
+            purge_list+=( "${dep}" )
+        fi
+    done
 
     # We are using dwarf exceptions instead of sjlj
     sed -i -e 's/libgcc_s_sjlj-1/libgcc_s_dw2-1/g' debian/gcc-mingw-w64-i686.install.in
