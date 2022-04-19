@@ -8,8 +8,11 @@ main() {
     # i686-pc-windows-gnu uses dwarf exceptions. So we build mingw packages
     # that are compatible with rust.
 
+    sed 's/^deb \(.*\)/deb \1\ndeb-src \1/'
+
     # Enable source
-    sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
+    sed -i 's/^deb \(.*\)/deb \1\ndeb-src \1/' /etc/apt/sources.list
+    #sed -i 's/# deb-src/deb-src/g' /etc/apt/sources.list
     apt-get update
 
     # Install mingw (with sjlj exceptions) to get the dependencies right
