@@ -1,7 +1,7 @@
 FROM rust:slim-buster
 RUN apt-get update && apt-get install -y curl git libc6-dev build-essential
 RUN rustup target add i686-pc-windows-gnu
-COPY --from=rustembedded/cross:i686-pc-windows-gnu /mingw.sh /mingw.sh
+COPY --from=rustembedded/cross:i686-pc-windows-gnu /mingw.sh /
 RUN bash mingw.sh
 ENV CARGO_BUILD_TARGET="i686-pc-windows-gnu"
 ENV CC=i686-w64-mingw32-gcc
