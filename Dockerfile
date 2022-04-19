@@ -5,4 +5,6 @@ COPY --from=crazymax/osxcross:11.3-ubuntu /osxcross /osxcross
 ENV PATH="/osxcross/bin:$PATH"
 ENV LD_LIBRARY_PATH="/osxcross/lib:$LD_LIBRARY_PATH"
 ENV CARGO_BUILD_TARGET="x86_64-apple-darwin"
+ENV CC=o64-clang
+ENV CXX=o64-clang++
 ENTRYPOINT ["cargo"]
