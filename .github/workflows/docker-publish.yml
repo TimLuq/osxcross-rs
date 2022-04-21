@@ -1,4 +1,4 @@
-name: Docker
+name: x86_64-unknown-linux-gnu
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -9,9 +9,9 @@ on:
   schedule:
     - cron: '43 4 * * *'
   push:
-    branches: [ i686-pc-windows-gnu ]
+    branches: [ x86_64-unknown-linux-gnu ]
   pull_request:
-    branches: [ i686-pc-windows-gnu ]
+    branches: [ x86_64-unknown-linux-gnu ]
 
 env:
   # Use docker.io for Docker Hub if empty
