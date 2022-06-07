@@ -6,4 +6,5 @@ RUN bash /mingw.sh
 ENV CARGO_BUILD_TARGET="i686-pc-windows-gnu"
 ENV CC=i686-w64-mingw32-gcc
 ENV CXX=i686-w64-mingw32-g++
-ENTRYPOINT ["cargo"]
+RUN /root/.cargo/bin/cargo install empty-library || true
+ENTRYPOINT ["/root/.cargo/bin/cargo"]
