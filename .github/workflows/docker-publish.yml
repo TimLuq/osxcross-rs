@@ -69,7 +69,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: x86_64-apple-darwin
+          tags: ghcr.io/${{ github.repository }}:x86_64-apple-darwin
           labels: ${{ steps.meta.outputs.labels }}
   
   x86_64-unknown-linux-gnu:
@@ -118,7 +118,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: x86_64-unknown-linux-gnu
+          tags: ghcr.io/${{ github.repository }}:x86_64-unknown-linux-gnu
           labels: ${{ steps.meta.outputs.labels }}
   
   i686-pc-windows-gnu:
@@ -167,5 +167,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: i686-pc-windows-gnu
+          tags: ghcr.io/${{ github.repository }}:i686-pc-windows-gnu
           labels: ${{ steps.meta.outputs.labels }}
