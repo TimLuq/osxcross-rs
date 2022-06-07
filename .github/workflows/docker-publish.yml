@@ -6,8 +6,6 @@ name: x86_64-unknown-linux-gnu
 # documentation.
 
 on:
-  schedule:
-    - cron: '43 4 * * *'
   push:
     branches: [ x86_64-unknown-linux-gnu ]
   pull_request:
