@@ -7,4 +7,5 @@ ENV LD_LIBRARY_PATH="/osxcross/lib:$LD_LIBRARY_PATH"
 ENV CARGO_BUILD_TARGET="x86_64-apple-darwin"
 ENV CC=o64-clang
 ENV CXX=o64-clang++
-ENTRYPOINT ["cargo"]
+RUN /root/.cargo/bin/cargo install empty-library || true
+ENTRYPOINT ["/root/.cargo/bin/cargo"]
