@@ -7,9 +7,9 @@ name: Docker
 
 on:
   push:
-    branches: [ x86_64-apple-darwin ]
+    branches: [ aarch64-apple-darwin ]
   pull_request:
-    branches: [ x86_64-apple-darwin ]
+    branches: [ aarch64-apple-darwin ]
 
 env:
   # Use docker.io for Docker Hub if empty
