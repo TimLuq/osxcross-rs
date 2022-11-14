@@ -7,5 +7,7 @@ ENV LD_LIBRARY_PATH="/osxcross/lib:$LD_LIBRARY_PATH"
 ENV CARGO_BUILD_TARGET="aarch64-apple-darwin"
 ENV CC=oa64-clang
 ENV CXX=oa64-clang++
+ENV LIBZ_SYS_STATIC=1
 RUN /root/.cargo/bin/cargo install empty-library || true
+RUN printf "\n%s\n%s\n%s\n" '[target.aarch64-apple-darwin]' 'linker = "arm64-apple-darwin20.4-clang"' 'ar = "arm64-apple-darwin20.4-ar"' >> /root/.cargo/config.toml
 ENTRYPOINT ["/root/.cargo/bin/cargo"]
