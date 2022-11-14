@@ -11,4 +11,5 @@ Currently the following environments are supported:
 
 - `x86_64-unknown-linux-gnu`
 - `x86_64-apple-darwin`
+- `aarch64-apple-darwin`
 - `i686-pc-windows-gnu`
